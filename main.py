@@ -18,9 +18,8 @@ def main():
         elif option == "2":
             remove_gust = input("Enter Gust Full Name to remove: ")
 
-            for gust in gusts:
-                if(gust == remove_gust):
-                    gusts.remove(remove_gust)
+            if remove_gust in gusts:
+                gusts.remove(remove_gust)
 
         elif option == "3":    
             for gust in gusts:
@@ -30,7 +29,7 @@ def main():
             find_gust = input("Enter Gust Full Name to find: ")
             if find_gust in gusts:
                 print("Gust Exist.")
-                
+
             else:
                 print("Not Registered")
                 
