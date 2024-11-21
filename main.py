@@ -22,10 +22,22 @@ def main():
                 if(gust == remove_gust):
                     gusts.remove(remove_gust)
 
+        elif option == "3":    
+            for gust in gusts:
+                print(gust)
+
+        elif option == "4": 
+            find_gust = input("Enter Gust Full Name to find: ")
+            if find_gust in gusts:
+                print("Gust Exist.")
+                
+            else:
+                print("Not Registered")
+                
+
 
         
-        for gust in gusts:
-            print(gust)
+
 
 
 
