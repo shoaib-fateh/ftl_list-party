@@ -3,7 +3,7 @@ from colorama import Fore, Back, Style, init
 init(autoreset=True)
 
 def main():
-    gusts = ["Shoaib", "Fateh", "Omid", "Osman"]
+    gusts = []
 
     while True:
         # options
