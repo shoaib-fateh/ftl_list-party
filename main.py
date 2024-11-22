@@ -1,58 +1,54 @@
 from colorama import Fore, Back, Style, init
+import random
 
 init(autoreset=True)
 
 def main():
-    gusts = []
+    guests = {}
 
     while True:
-        # options
         print(Back.CYAN + Fore.BLACK + "[1] Add guest.")
         print(Back.YELLOW + Fore.BLACK + "[2] Remove guest.")
         print(Back.GREEN + Fore.BLACK + "[3] Show guest list.")
         print(Back.MAGENTA + Fore.BLACK + "[4] Check if someone is on the list.")
         print(Back.RED + Fore.BLACK + "[5] Exit.")
 
-
-
-
         option = input(Fore.BLUE + "Choose an option [1-5]: ")
 
-        # addi gusts
+        # Add guest
         if option == "1":
-            new_gust = input(Fore.YELLOW + "Enter Gust Full Name to add: ")
-            gusts.append(new_gust)
+            new_guest = input(Fore.YELLOW + "Enter Guest Full Name to add: ")
+            guests[f"person_{random.randint(100, 999)}"] = new_guest
+            print(Fore.GREEN + f"{new_guest} added to the guest list.")
 
-            print(Fore.GREEN + f"{new_gust} added.")
-
-        # removing gusts
+        # Remove guest
         elif option == "2":
-            remove_gust = input(Fore.YELLOW + "Enter Gust Full Name to remove: ")
-
-            if remove_gust in gusts:
-                gusts.remove(remove_gust)
-                print(Fore.RED + f"{remove_gust} removed!")
+            remove_guest = input(Fore.YELLOW + "Enter Guest Full Name to remove: ")
+            # Find key corresponding to the guest
+            for key, value in guests.items():
+                if value == remove_guest:
+                    del guests[key]
+                    print(Fore.RED + f"{remove_guest} removed from the guest list!")
+                    break
             else:
-                print(Fore.RED + f"{remove_gust} not found.")
+                print(Fore.RED + f"{remove_guest} not found in the guest list.")
 
-        # showing gusts list
-        elif option == "3":    
-            if gusts:
+        # Show guest list
+        elif option == "3":
+            if guests:
                 print(Fore.CYAN + "Guest list:")
-
-                for gust in gusts:
-                    print(Fore.GREEN + gust)
-
+                for guest in guests.values():
+                    print(Fore.GREEN + guest)
             else:
-                print(Fore.RED + "No guests yet.")
+                print(Fore.RED + "No guests in the list yet.")
 
-        # searching gust's list
-        elif option == "4": 
-            find_gust = input(Fore.YELLOW + "Enter Gust Full Name to find: ")
-            if find_gust in gusts:
-                print(Fore.GREEN + f"{find_gust} is on the list.")
+        # Search for a guest
+        elif option == "4":
+            find_guest = input(Fore.YELLOW + "Enter Guest Full Name to search: ")
+            if find_guest in guests.values():
+                print(Fore.GREEN + f"{find_guest} is on the guest list.")
             else:
-                print(Fore.RED + f"{find_gust} not registered.")
+                print(Fore.RED + f"{find_guest} not found in the guest list.")
 
         # exit
         elif option == "5":
